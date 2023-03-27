@@ -4,6 +4,8 @@ package com.budgetapp.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
@@ -12,6 +14,7 @@ public class User extends BaseEntity{
     private String username;
     private String password;
     private String roles;
+    private BigDecimal income;
 
     public String getName() {
         return username;
@@ -35,5 +38,13 @@ public class User extends BaseEntity{
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public BigDecimal getIncome() {
+        return income;
+    }
+
+    public void setIncome(BigDecimal income) {
+        this.income = income;
     }
 }
