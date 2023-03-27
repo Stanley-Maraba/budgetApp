@@ -1,24 +1,34 @@
 package com.budgetapp.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import java.math.BigDecimal;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Entity
-@Table(name = "users")
-public class User extends BaseEntity{
+@Table(name = "user")
+public class user {
 
-    private String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    private String name;
     private String password;
     private String roles;
-    private BigDecimal income;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
-        return username;
+        return name;
     }
 
     public void setName(String name) {
-        this.username = name;
+        this.name = name;
     }
 
     public String getPassword() {
@@ -35,13 +45,5 @@ public class User extends BaseEntity{
 
     public void setRoles(String roles) {
         this.roles = roles;
-    }
-
-    public BigDecimal getIncome() {
-        return income;
-    }
-
-    public void setIncome(BigDecimal income) {
-        this.income = income;
     }
 }
