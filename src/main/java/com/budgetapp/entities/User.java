@@ -13,32 +13,31 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String name;
+    private String username;
     private String password;
     private String roles;
-
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(final String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
@@ -46,7 +45,7 @@ public class User {
         return roles;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(final String roles) {
         this.roles = roles;
     }
 }

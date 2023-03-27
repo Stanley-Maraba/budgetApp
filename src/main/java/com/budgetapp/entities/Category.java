@@ -5,7 +5,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Categories")
-public class Category extends BaseEntity{
+public class Category extends BaseEntity {
 
     private String name;
 
@@ -13,7 +13,7 @@ public class Category extends BaseEntity{
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 }
