@@ -2,13 +2,11 @@ package com.budgetapp.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "expenses")
 public class Expense extends BaseEntity{
-
 
     private String name;
     private BigDecimal value;
