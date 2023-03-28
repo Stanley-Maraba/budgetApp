@@ -1,4 +1,4 @@
-package com.budgetapp.services;
+package com.budgetapp.Repositories;
 
 import com.budgetapp.entities.Expense;
 import org.springframework.data.jpa.repository.JpaRepository;

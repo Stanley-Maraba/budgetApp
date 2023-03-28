@@ -1,6 +1,7 @@
 package com.budgetapp.services;
 
 
+import com.budgetapp.Repositories.UserRepository;
 import com.budgetapp.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +19,16 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void saveUser(User user) {
+    public void saveUser(final User user) {
         userRepository.save(user);
     }
 
-    public User FindUserById(Long id) {
+    public User findUserById(final Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         return optionalUser.orElse(null);
     }
 
-    public void DeleteUser(Long id) {
+    public void deleteUser(final Long id) {
         userRepository.deleteById(id);
     }
 }
