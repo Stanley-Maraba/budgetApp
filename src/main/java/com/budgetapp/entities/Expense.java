@@ -3,27 +3,28 @@ package com.budgetapp.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "expense")
-public class Expense extends BaseEntity{
+import java.math.BigDecimal;
 
+@Entity
+@Table(name = "expenses")
+public class Expense extends BaseEntity {
 
     private String name;
-    private Integer value;
+    private BigDecimal value;
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
-    public Integer getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(final BigDecimal value) {
         this.value = value;
     }
 }

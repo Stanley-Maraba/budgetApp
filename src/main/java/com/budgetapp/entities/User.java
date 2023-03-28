@@ -1,13 +1,14 @@
 package com.budgetapp.entities;
 
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
-
 
     private String username;
     private String password;
@@ -17,15 +18,15 @@ public class User extends BaseEntity{
         return username;
     }
 
-    public void setUsername(String name) {
-        this.username = name;
+    public void setUsername(final String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
@@ -33,7 +34,7 @@ public class User extends BaseEntity{
         return roles;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(final String roles) {
         this.roles = roles;
     }
 }

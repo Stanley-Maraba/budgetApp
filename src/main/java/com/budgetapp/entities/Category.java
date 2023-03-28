@@ -1,13 +1,11 @@
 package com.budgetapp.entities;
 
-
 import jakarta.persistence.Entity;
-
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Category")
-public class Category extends BaseEntity{
+@Table(name = "categories")
+public class Category extends BaseEntity {
 
     private String name;
 
@@ -15,7 +13,7 @@ public class Category extends BaseEntity{
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 }
