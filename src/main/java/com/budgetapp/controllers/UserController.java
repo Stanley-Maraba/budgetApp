@@ -2,7 +2,6 @@ package com.budgetapp.controllers;
 
 import com.budgetapp.entities.User;
 import com.budgetapp.services.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,21 +25,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> getAllUsers() {
         final var findUsers = userService.findAllUsers();
         return ResponseEntity.ok(findUsers);
     }
 
-    @PostMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createUser(@RequestBody final User user) {
         final var createdUser = userService.saveUser(user);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(createdUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @DeleteMapping(path = "/{id}")
@@ -49,16 +43,9 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> findUserById(@PathVariable final Long id) {
-        User user = null;
-        try {
-            user = userService.findUserById(id);
-            return ResponseEntity.ok(user);
-        } catch (EntityNotFoundException ex) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(user);
-        }
+        User user = userService.findUserById(id);
+        return ResponseEntity.ok(user);
     }
 }
