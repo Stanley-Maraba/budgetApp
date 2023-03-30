@@ -2,7 +2,9 @@ package com.budgetapp.controllers;
 
 import com.budgetapp.entities.User;
 import com.budgetapp.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,31 +20,45 @@ import java.util.List;
 @RequestMapping(path = "/api/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(final UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping()
-    public List<User> getAllUsers() {
-        return userService.findAllUsers();
+    public ResponseEntity<List<User>> getAllUsers() {
+        final var findUsers = userService.findAllUsers();
+        return ResponseEntity.ok(findUsers);
     }
 
-    @PostMapping()
-    public void createUser(@RequestBody User user) {
-        userService.saveUser(user);
+    @PostMapping(
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<User> createUser(@RequestBody final User user) {
+        final var createdUser = userService.saveUser(user);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(createdUser);
     }
 
     @DeleteMapping(path = "/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable final Long id) {
         userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable Long id) {
-        User user = userService.findUserById(id);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<User> findUserById(@PathVariable final Long id) {
+        User user = null;
+        try {
+            user = userService.findUserById(id);
+            return ResponseEntity.ok(user);
+        } catch (EntityNotFoundException ex) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(user);
+        }
     }
 }

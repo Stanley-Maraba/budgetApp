@@ -1,31 +1,32 @@
 package com.budgetapp.services;
 
-
-import com.budgetapp.Repositories.UserRepository;
 import com.budgetapp.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.budgetapp.repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
-    public void saveUser(final User user) {
-        userRepository.save(user);
+    public User saveUser(final User user) {
+        return userRepository.save(user);
     }
 
     public User findUserById(final Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        return optionalUser.orElse(null);
+        User user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return user;
     }
 
     public void deleteUser(final Long id) {
