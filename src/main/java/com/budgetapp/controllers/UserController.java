@@ -45,7 +45,7 @@ public class UserController {
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> findUserById(@PathVariable final Long id) {
-        User user = userService.findUserById(id);
+        final User user = userService.findUserById(id);
         return ResponseEntity.ok(user);
     }
 }

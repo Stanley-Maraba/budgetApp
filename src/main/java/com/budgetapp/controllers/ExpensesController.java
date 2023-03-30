@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/expenses", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/expenses")
 public class ExpensesController {
 
     private final ExpensesService expensesService;
@@ -31,9 +31,7 @@ public class ExpensesController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Expense>> findExpenses() {
         final var findExpenses = expensesService.findAllExpenses();
         return ResponseEntity.ok(findExpenses);

@@ -11,7 +11,7 @@ public class ExpensesService {
 
     private final ExpensesRepository expensesRepository;
 
-    public ExpensesService(ExpensesRepository expensesRepository) {
+    public ExpensesService(final ExpensesRepository expensesRepository) {
         this.expensesRepository = expensesRepository;
     }
 
@@ -23,7 +23,7 @@ public class ExpensesService {
         expensesRepository.deleteById(id);
     }
 
-    public Expense addExpenses(final Expense expenses) {
-        return expensesRepository.save(expenses);
+    public Expense addExpenses(final Expense expense) {
+        return expensesRepository.save(expense);
     }
 }
