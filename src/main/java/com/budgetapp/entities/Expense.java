@@ -1,6 +1,7 @@
 package com.budgetapp.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
@@ -11,6 +12,12 @@ public class Expense extends BaseEntity {
 
     private String name;
     private BigDecimal value;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Category category;
 
     public String getName() {
         return name;

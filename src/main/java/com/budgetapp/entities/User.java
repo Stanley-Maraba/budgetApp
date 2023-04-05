@@ -1,7 +1,10 @@
 package com.budgetapp.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -10,6 +13,10 @@ public class User extends BaseEntity {
     private String username;
     private String password;
     private String roles;
+    private Integer Income;
+
+    @OneToMany(mappedBy = "user")
+    private List<Expense> expenses;
 
     public String getUsername() {
         return username;
@@ -33,5 +40,13 @@ public class User extends BaseEntity {
 
     public void setRoles(final String roles) {
         this.roles = roles;
+    }
+
+    public Integer getIncome() {
+        return Income;
+    }
+
+    public void setIncome(Integer income) {
+        Income = income;
     }
 }
