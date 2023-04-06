@@ -13,7 +13,6 @@ public class User extends BaseEntity {
     private String username;
     private String password;
     private String roles;
-    private Integer Income;
 
     @OneToMany(mappedBy = "user")
     private List<Expense> expenses;
@@ -40,13 +39,5 @@ public class User extends BaseEntity {
 
     public void setRoles(final String roles) {
         this.roles = roles;
-    }
-
-    public Integer getIncome() {
-        return Income;
-    }
-
-    public void setIncome(Integer income) {
-        Income = income;
     }
 }

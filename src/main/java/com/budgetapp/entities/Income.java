@@ -9,31 +9,23 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "expenses")
-public class Expense extends BaseEntity {
-
+@Table(name = "incomes")
+public class Income extends BaseEntity {
     private String name;
     private BigDecimal value;
 
     @ManyToOne
-    @JoinColumn (
+    @JoinColumn(
             name = "user_id",
-            foreignKey = @ForeignKey (name = "user_fk")
+            foreignKey = @ForeignKey(name = "user_fk")
     )
     private User user;
-
-    @ManyToOne
-    @JoinColumn (
-            name = " category_id",
-            foreignKey = @ForeignKey (name = "category_fk")
-    )
-    private Category category;
 
     public String getName() {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -41,7 +33,7 @@ public class Expense extends BaseEntity {
         return value;
     }
 
-    public void setValue(final BigDecimal value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 }
