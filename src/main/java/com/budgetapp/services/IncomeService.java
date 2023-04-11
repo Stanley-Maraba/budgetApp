@@ -4,6 +4,8 @@ import com.budgetapp.entities.Income;
 import com.budgetapp.repositories.IncomeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IncomeService {
 
@@ -19,5 +21,9 @@ public class IncomeService {
 
     public void deleteIncome(final Long id) {
         incomeRepository.deleteById(id);
+    }
+
+    public List<Income> findAllIncomes(){
+        return incomeRepository.findAll();
     }
 }

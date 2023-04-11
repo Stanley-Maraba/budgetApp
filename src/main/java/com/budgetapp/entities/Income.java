@@ -25,7 +25,7 @@ public class Income extends BaseEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -33,7 +33,7 @@ public class Income extends BaseEntity {
         return value;
     }
 
-    public void setValue(BigDecimal value) {
+    public void setValue(final BigDecimal value) {
         this.value = value;
     }
 }
