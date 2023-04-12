@@ -17,6 +17,9 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user")
     private List<Expense> expenses;
 
+    @OneToMany(mappedBy = "user")
+    private List<Income> incomes;
+
     public String getUsername() {
         return username;
     }
