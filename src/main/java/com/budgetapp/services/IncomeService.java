@@ -28,7 +28,7 @@ public class IncomeService {
         return incomeRepository.findAll();
     }
 
-    public List<Income> findIncomesByUserId(final Long user_id) {
-        return incomeRepository.findByUserId(user_id).orElseThrow(EntityNotFoundException::new);
+    public List<Income> findIncomesByUserId(final Long userId) {
+        return incomeRepository.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
     }
 }

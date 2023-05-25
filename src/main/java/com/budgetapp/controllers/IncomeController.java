@@ -51,10 +51,10 @@ public class IncomeController {
         return ResponseEntity.ok(findIncomes);
     }
 
-    @GetMapping(path = "/{user_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<List<Income>> findIncomesById(@PathVariable final Long user_id) {
+    @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<List<Income>> findIncomesById(@PathVariable final Long userId) {
         try {
-            List<Income> income = incomeService.findIncomesByUserId(user_id);
+            List<Income> income = incomeService.findIncomesByUserId(userId);
             return ResponseEntity.ok(income);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();

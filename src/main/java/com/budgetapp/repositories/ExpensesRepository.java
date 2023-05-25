@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ExpensesRepository extends JpaRepository<Expense, Long> {
-    Optional<List<Expense>> findByUserId(final Long user_id);
+    Optional<List<Expense>> findByUserId(final Long userId);
 }

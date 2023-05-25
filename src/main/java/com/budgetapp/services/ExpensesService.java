@@ -28,7 +28,7 @@ public class ExpensesService {
         return expensesRepository.save(expense);
     }
 
-    public List<Expense> findExpensesByUserId(final Long user_id) {
-        return expensesRepository.findByUserId(user_id).orElseThrow(EntityNotFoundException::new);
+    public List<Expense> findExpensesByUserId(final Long userId) {
+        return expensesRepository.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
     }
 }
