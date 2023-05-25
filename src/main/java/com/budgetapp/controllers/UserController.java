@@ -48,4 +48,15 @@ public class UserController {
         final User user = userService.findUserById(id);
         return ResponseEntity.ok(user);
     }
+
+    @GetMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> login(@RequestBody final User user) {
+        final User authUser = userService.authenticatingUser(user.getUsername(), user.getPassword());
+        if (authUser != null) {
+            final User me = userService.findUserById(authUser.getId());
+            return ResponseEntity.ok(me);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 }
