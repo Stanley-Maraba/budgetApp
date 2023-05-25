@@ -2,7 +2,6 @@ package com.budgetapp.controllers;
 
 import com.budgetapp.entities.Expense;
 import com.budgetapp.services.ExpensesService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,11 +45,11 @@ public class ExpensesController {
 
     @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<List<Expense>> findIncomesById(@PathVariable final Long userId) {
-        try {
-            List<Expense> expense = expensesService.findExpensesByUserId(userId);
+        List<Expense> expense = expensesService.findExpensesByUserId(userId);
+        if (expense != null) {
             return ResponseEntity.ok(expense);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok().build();
         }
     }
 }

@@ -2,7 +2,6 @@ package com.budgetapp.services;
 
 import com.budgetapp.entities.Expense;
 import com.budgetapp.repositories.ExpensesRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +28,6 @@ public class ExpensesService {
     }
 
     public List<Expense> findExpensesByUserId(final Long userId) {
-        return expensesRepository.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+        return expensesRepository.findByUserId(userId);
     }
 }
