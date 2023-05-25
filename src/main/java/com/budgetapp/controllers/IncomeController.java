@@ -53,10 +53,6 @@ public class IncomeController {
     @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<List<Income>> findIncomesById(@PathVariable final Long userId) {
         List<Income> income = incomeService.findIncomesByUserId(userId);
-        if (income != null) {
-            return ResponseEntity.ok(income);
-        } else {
-            return ResponseEntity.ok().build();
-        }
+        return ResponseEntity.ok(income);
     }
 }

@@ -46,10 +46,6 @@ public class ExpensesController {
     @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<List<Expense>> findIncomesById(@PathVariable final Long userId) {
         List<Expense> expense = expensesService.findExpensesByUserId(userId);
-        if (expense != null) {
-            return ResponseEntity.ok(expense);
-        } else {
-            return ResponseEntity.ok().build();
-        }
+        return ResponseEntity.ok(expense);
     }
 }
