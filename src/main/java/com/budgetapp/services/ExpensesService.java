@@ -26,4 +26,8 @@ public class ExpensesService {
     public Expense addExpenses(final Expense expense) {
         return expensesRepository.save(expense);
     }
+
+    public List<Expense> findExpensesByUserId(final Long userId) {
+        return expensesRepository.findByUserId(userId);
+    }
 }

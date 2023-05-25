@@ -49,4 +49,10 @@ public class IncomeController {
         final var findIncomes = incomeService.findAllIncomes();
         return ResponseEntity.ok(findIncomes);
     }
+
+    @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<List<Income>> findIncomesById(@PathVariable final Long userId) {
+        List<Income> income = incomeService.findIncomesByUserId(userId);
+        return ResponseEntity.ok(income);
+    }
 }

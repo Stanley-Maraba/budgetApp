@@ -23,7 +23,11 @@ public class IncomeService {
         incomeRepository.deleteById(id);
     }
 
-    public List<Income> findAllIncomes(){
+    public List<Income> findAllIncomes() {
         return incomeRepository.findAll();
+    }
+
+    public List<Income> findIncomesByUserId(final Long userId) {
+        return incomeRepository.findByUserId(userId);
     }
 }

@@ -42,4 +42,10 @@ public class ExpensesController {
         final var createExpenses = expensesService.addExpenses(expense);
         return ResponseEntity.status(HttpStatus.CREATED).body(createExpenses);
     }
+
+    @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<List<Expense>> findIncomesById(@PathVariable final Long userId) {
+        List<Expense> expense = expensesService.findExpensesByUserId(userId);
+        return ResponseEntity.ok(expense);
+    }
 }
