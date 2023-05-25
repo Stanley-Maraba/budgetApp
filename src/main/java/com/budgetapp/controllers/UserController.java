@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -50,13 +49,14 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping(path = "/login", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> login(@RequestParam final String username, @RequestParam final String password) {
-            final User Authuser = userService.authenticatingUser(username, password);
-        if (Authuser != null) {
-            return ResponseEntity.ok("Successful");
+    @GetMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> login(@RequestBody final User user) {
+        final User authUser = userService.authenticatingUser(user.getUsername(), user.getPassword());
+        if (authUser != null) {
+            final User me = userService.findUserById(authUser.getId());
+            return ResponseEntity.ok(me);
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 }

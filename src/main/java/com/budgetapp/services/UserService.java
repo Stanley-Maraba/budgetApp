@@ -34,7 +34,6 @@ public class UserService {
     }
 
     public User authenticatingUser(final String username, final String password) {
-        final User user = userRepository.findByUsernameAndPassword(username, password).orElseThrow(() -> new EntityNotFoundException(String.format("")));
-        return user;
+        return userRepository.findByUsernameAndPassword(username, password).orElse(null);
     }
 }
